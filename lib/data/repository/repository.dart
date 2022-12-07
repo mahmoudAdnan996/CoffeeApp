@@ -20,7 +20,7 @@ class Repository implements BaseRepository{
   Future<Either<Failure, List<Coffee>>> getCoffeeList() async{
     if(await _networkInfo.isConnected){
       try {
-        final result = await _baseApiClientService.postRequest(EndPoints.getCoffeeAPI, null);
+        final result = await _baseApiClientService.getRequest(EndPoints.getCoffeeAPI);
         return Right(result);
       }on AppException catch(error){
         return Left(Failure(statusCode: 500, statusMessage: error.toString(), success: false));
